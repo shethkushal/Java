@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from FirstWebServiceService WSDL service -->
+
+  <service name="FirstWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://first"/>
+      <parameter name="wsdlServiceElement" value="FirstWebServiceService"/>
+      <parameter name="schemaQualified" value="http://first"/>
+      <parameter name="wsdlServicePort" value="FirstWebService"/>
+      <parameter name="className" value="first.FirstWebService"/>
+      <parameter name="wsdlPortType" value="FirstWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://first" xmlns:retNS="http://first" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="helloWorldXML" qname="operNS:helloWorldXML" returnQName="retNS:helloWorldXMLReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://first" xmlns:retNS="http://first" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="helloWorldJSON" qname="operNS:helloWorldJSON" returnQName="retNS:helloWorldJSONReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="helloWorldXML helloWorldJSON"/>
+
+  </service>
+</deployment>
