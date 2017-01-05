@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+//Class to create Node
 class Node {
 	int key;
 	Node left, right;
@@ -15,6 +16,7 @@ class Node {
 	}
 }
 
+//Creating Tree class
 public class BinaryTree {
 
 	Node root;
@@ -27,6 +29,7 @@ public class BinaryTree {
 		root = null;
 	}
 
+//Inorder Traversal with Recursion
 	public void inorder(Node node) {
 		if (node == null) {
 			return;
@@ -36,6 +39,7 @@ public class BinaryTree {
 		inorder(node.right);
 	}
 
+//Inorder Traversal without Recursion and using a Stack
 	public void inorderWRS(Node node) {
 		Stack<Node> stack = new Stack<Node>();
 		if (node == null) {
@@ -59,6 +63,7 @@ public class BinaryTree {
 		}
 	}
 
+//Inorder traversal using Morris Traversal
 	public void inorderMorris(Node node) {
 		Node current = node;
 		while (current != null) {
@@ -83,6 +88,37 @@ public class BinaryTree {
 		}
 	}
 
+//Preorder Traversal with Recursion
+	public void preorder(Node node) {
+		if (node == null) {
+			return;
+		}
+		System.out.print(node.key + " ");
+		preorder(node.left);
+		preorder(node.right);
+	}
+
+//Preorder Traversal without Recursion and using a Stack
+	public void preorderWRS(Node node) {
+		if (node == null) {
+			return;
+		}
+		Stack<Node> stack = new Stack<Node>();
+		Node current = node;
+		stack.push(current);
+		while (stack.size() > 0) {
+			current = stack.pop();
+			System.out.print(current.key + " ");
+			if (current.right != null) {
+				stack.push(current.right);
+			}
+			if (current.left != null) {
+				stack.push(current.left);
+			}
+		}
+	}
+	
+//Preorder traversal using Morris Traversal
 	public void preorderMorris(Node node) {
 		Node current = node;
 		while (current != null) {
@@ -107,34 +143,7 @@ public class BinaryTree {
 		}
 	}
 
-	public void preorder(Node node) {
-		if (node == null) {
-			return;
-		}
-		System.out.print(node.key + " ");
-		preorder(node.left);
-		preorder(node.right);
-	}
-
-	public void preorderWRS(Node node) {
-		if (node == null) {
-			return;
-		}
-		Stack<Node> stack = new Stack<Node>();
-		Node current = node;
-		stack.push(current);
-		while (stack.size() > 0) {
-			current = stack.pop();
-			System.out.print(current.key + " ");
-			if (current.right != null) {
-				stack.push(current.right);
-			}
-			if (current.left != null) {
-				stack.push(current.left);
-			}
-		}
-	}
-
+//Postorder traversal with recursion
 	public void postorder(Node node) {
 		if (node == null) {
 			return;
@@ -144,6 +153,7 @@ public class BinaryTree {
 		System.out.print(node.key + " ");
 	}
 
+//Postorder Traversal without Recursion and using a Stack	
 	public void postorderWRS(Node node) {
 		if (node == null) {
 			return;
@@ -167,6 +177,7 @@ public class BinaryTree {
 		}
 	}
 
+//Level order traversal (BFS for tree)
 	public void levelorder(Node node) {
 		Queue<Node> queue = new LinkedList<Node>();
 		queue.add(node);
@@ -180,6 +191,7 @@ public class BinaryTree {
 		}
 	}
 
+//Reverse level order traversal
 	public void reverseLevelOrder(Node node) {
 		Queue<Node> queue = new LinkedList<Node>();
 		Stack<Node> stack = new Stack<Node>();
@@ -200,6 +212,7 @@ public class BinaryTree {
 		}
 	}
 
+//Spiral order traversal
 	public void spiralorder(Node node) {
 		if (node == null) {
 			return;
@@ -232,6 +245,7 @@ public class BinaryTree {
 		}
 	}
 
+//Finding height of tree	
 	public int height(Node node) {
 		if (node == null) {
 			return 0;
@@ -242,6 +256,7 @@ public class BinaryTree {
 		return lheight > rheight ? lheight + 1 : rheight + 1;
 	}
 
+//Finding Maximum width of a tree	
 	public int levelwidth(Node node) {
 		int result = 0;
 		int count = 0;
@@ -264,30 +279,31 @@ public class BinaryTree {
 		return result;
 	}
 
+//Finding nodes that are at distance k from Node	
 	public void kNodesFromRoot(Node node, int k) {
-		// (Without Recursion)
-		// int result = 0;
-		// int count = 0;
-		// Queue<Node> queue = new LinkedList<Node>();
-		// queue.add(node);
-		// while (!queue.isEmpty()) {
-		// count = queue.size();
-		// k--;
-		// result = result > count ? result : count;
-		// while (count > 0) {
-		// Node temp = queue.poll();
-		// if (k == 0) {
-		// System.out.print(temp.key + " ");
-		// }
-		// if (temp.left != null) {
-		// queue.add(temp.left);
-		// }
-		// if (temp.right != null) {
-		// queue.add(temp.right);
-		// }
-		// count--;
-		// }
-		// }
+		 //(Without Recursion)
+		 /*int result = 0;
+		 int count = 0;
+		 Queue<Node> queue = new LinkedList<Node>();
+		 queue.add(node);
+		 while (!queue.isEmpty()) {
+			 count = queue.size();
+			 k--;
+			 result = result > count ? result : count;
+			 while (count > 0) {
+				 Node temp = queue.poll();
+				 if (k == 0) {
+					 System.out.print(temp.key + " ");
+				 }
+				 if (temp.left != null) {
+					 queue.add(temp.left);
+				 }
+				 if (temp.right != null) {
+					 queue.add(temp.right);
+				 }
+				 count--;
+			 }
+		 }*/
 		// (With Recursion)
 		if (node == null) {
 			return;
@@ -301,6 +317,7 @@ public class BinaryTree {
 		}
 	}
 
+//Finding ancestors of given value	
 	public boolean ancestors(Node node, int key) {
 		if (node == null) {
 			return false;
@@ -315,6 +332,7 @@ public class BinaryTree {
 		return false;
 	}
 
+//Generating Mirror image of a tree	
 	public Node mirror(Node node) {
 		if (node == null) {
 			return node;
@@ -328,6 +346,7 @@ public class BinaryTree {
 		return node;
 	}
 
+//Finding a common ancestors for given nodes	
 	public Node commonAncestors(Node node, int n1, int n2) {
 		if (node == null) {
 			return null;
@@ -347,6 +366,7 @@ public class BinaryTree {
 		return left != null ? left : right;
 	}
 
+//Finding the sum of all nodes of tree	
 	public int sumOfNodes(Node node) {
 		if (node == null) {
 			return 0;
@@ -356,6 +376,7 @@ public class BinaryTree {
 		return suml + sumr + node.key;
 	}
 
+//Main Function	
 	public static void main(String[] args) {
 		BinaryTree tree = new BinaryTree(1);
 		// tree.root = new Node(1);
